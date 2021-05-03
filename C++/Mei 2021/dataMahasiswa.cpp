@@ -1,3 +1,4 @@
+//deklarasi preprocessor
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
@@ -9,9 +10,11 @@ void clear() {
 
 //kelas mahasiswa
 class Mahasiswa {
+  //properti mahasiswa
   private:
     string nama,fakultas,prodi,nim;
 
+  //method mahasiswa
   public:
     void setNama(string nama) {
       this->nama = nama;
@@ -186,8 +189,10 @@ class Mahasiswa {
 
 //fungsi utama
 int main() {
+  //instansiasi objek
   Mahasiswa obj;
 
+  //memanggil method objek
   obj.inputNama();
   obj.inputNim();
   obj.inputFakultas();
