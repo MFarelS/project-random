@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "upload_file.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^1.2.2",
+    "mv": "^2.1.1"
+  }
+}
