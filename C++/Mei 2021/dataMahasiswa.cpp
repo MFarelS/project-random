@@ -92,87 +92,110 @@ class Mahasiswa {
       cout << "7. Fakultas Ilmu Kesehatan" << endl << endl;
       cout << "Pilih nomor: ";
       cin >> pilihan;
-  
-      switch(pilihan) {
-        case 1:
-          fakultas = "Fakultas Pertanian";
-          clear();
-          cout << "Apa Prodi Anda?" << endl;
-          cout << "1. Agroteknologi" << endl;
-          cout << "2. Agribisnis" << endl << endl;
-          cout << "Pilih nomor: ";
-          cin >> pilihan2;
-          switch(pilihan2) {
-            case 1: prodi = "Agroteknologi"; break;
-            case 2: prodi = "Agribisnis"; break;
-            default: 
+      if(check_number(pilihan)){
+        switch(pilihan) {
+          case 1:
+            fakultas = "Fakultas Pertanian";
+            clear();
+            cout << "Apa Prodi Anda?" << endl;
+            cout << "1. Agroteknologi" << endl;
+            cout << "2. Agribisnis" << endl << endl;
+            cout << "Pilih nomor: ";
+            cin >> pilihan2;
+            if(check_number(pilihan2)){
+              switch(pilihan2) {
+                case 1: prodi = "Agroteknologi"; break;
+                case 2: prodi = "Agribisnis"; break;
+                default: 
+                  clear();
+                  cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+                  inputFakultas();
+                  break;
+              }
+            }else{
               clear();
-              cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+              cout << "Input tidak valid. Masukkan nama yang benar!" << endl;
               inputFakultas();
-              break;
-          }
-          break;
-        case 2:
-          fakultas = "Fakultas Keguruan dan Ilmu Pendidikan";
-          clear();
-          cout << "Apa Prodi Anda?" << endl;
-          cout << "1. Pendidikan Geografi" << endl;
-          cout << "2. Pendidikan Bahasa dan Sastra Indonesia" << endl;
-          cout << "3. Pendidikan Bahasa Inggris" << endl;
-          cout << "4. Pendidikan IPS" << endl << endl;
-          cout << "Pilih nomor: ";
-          cin >> pilihan2;
-          switch(pilihan2) {
-            case 1: prodi = "Pendidikan Geografi"; break;
-            case 2: prodi = "Pendidikan Bahasa dan Sastra Indonesia"; break;
-            case 3: prodi = "Pendidikan Bahasa Inggris"; break;
-            case 4: prodi = "Pendidikan IPS"; break;
-            default: 
+            }
+            break;
+          case 2:
+            fakultas = "Fakultas Keguruan dan Ilmu Pendidikan";
+            clear();
+            cout << "Apa Prodi Anda?" << endl;
+            cout << "1. Pendidikan Geografi" << endl;
+            cout << "2. Pendidikan Bahasa dan Sastra Indonesia" << endl;
+            cout << "3. Pendidikan Bahasa Inggris" << endl;
+            cout << "4. Pendidikan IPS" << endl << endl;
+            cout << "Pilih nomor: ";
+            cin >> pilihan2;
+            if(check_number(pilihan2)){
+              switch(pilihan2) {
+                case 1: prodi = "Pendidikan Geografi"; break;
+                case 2: prodi = "Pendidikan Bahasa dan Sastra Indonesia"; break;
+                case 3: prodi = "Pendidikan Bahasa Inggris"; break;
+                case 4: prodi = "Pendidikan IPS"; break;
+                default: 
+                  clear();
+                  cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+                  inputFakultas();
+                  break;
+              }
+            }else{
               clear();
-              cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+              cout << "Input tidak valid. Masukkan nama yang benar!" << endl;
               inputFakultas();
-              break;
-          }
-          break;
-        case 3:
-          fakultas = "Fakultas Teknologi Informasi";
-          clear();
-          cout << "Apa Prodi Anda?" << endl;
-          cout << "1. Teknik Informatika" << endl;
-          cout << "2. Sistem Informasi" << endl << endl;
-          cout << "Pilih nomor: ";
-          cin >> pilihan2;
-          switch(pilihan2) {
-            case 1: prodi = "Teknik Informatika"; break;
-            case 2: prodi = "Sistem Informasi"; break;
-            default:
+            }
+            break;
+          case 3:
+            fakultas = "Fakultas Teknologi Informasi";
+            clear();
+            cout << "Apa Prodi Anda?" << endl;
+            cout << "1. Teknik Informatika" << endl;
+            cout << "2. Sistem Informasi" << endl << endl;
+            cout << "Pilih nomor: ";
+            cin >> pilihan2;
+            if(check_number(pilihan2)){
+              switch(pilihan2) {
+                case 1: prodi = "Teknik Informatika"; break;
+                case 2: prodi = "Sistem Informasi"; break;
+                default:
+                  clear();
+                  cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+                  inputFakultas();
+                  break;
+              }
+            }else{
               clear();
-              cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+              cout << "Input tidak valid. Masukkan nama yang benar!" << endl;
               inputFakultas();
-              break;
-          }
-          break;
-        case 4:
-          fakultas = "Fakultas Ekonomi";
-          prodi = "Akuntansi";
-          break;
-        case 5:
-          fakultas = "Fakultas Ilmu Sosial dan Politik";
-          prodi = "Ilmu Pemerintahan";
-          break;
-        case 6:
-          fakultas = "Fakultas Matematika dan Ilmu Pengetahuan Alam";
-          prodi = "Matematika";
-          break;
-        case 7:
-          fakultas = "Fakultas Ilmu Kesehatan";
-          prodi = "Ilmu Keperawatan";
-          break;
-        default: 
-          clear();
-          cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
-          inputFakultas();
-          break;
+            }
+            break;
+          case 4:
+            fakultas = "Fakultas Ekonomi";
+            prodi = "Akuntansi";
+            break;
+          case 5:
+            fakultas = "Fakultas Ilmu Sosial dan Politik";
+            prodi = "Ilmu Pemerintahan";
+            break;
+          case 6:
+            fakultas = "Fakultas Matematika dan Ilmu Pengetahuan Alam";
+            prodi = "Matematika";
+            break;
+          case 7:
+            fakultas = "Fakultas Ilmu Kesehatan";
+            prodi = "Ilmu Keperawatan";
+            break;
+          default: 
+            clear();
+            cout << "Pilihan tidak valid. Masukkan pilihan dengan benar!" << endl;
+            inputFakultas();
+            break;
+        }
+      }else{
+        clear();
+        cout << "Input tidak valid. Masukkan nama yang benar!" << endl;
+        inputFakultas();
       }
       setFakultas(fakultas); setProdi(prodi);
       clear();
