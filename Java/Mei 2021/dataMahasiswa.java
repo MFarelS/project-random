@@ -211,13 +211,13 @@ class dataMahasiswa {
   void tampilData() {
     clear();
     System.out.print(
-      "                    Data Mahasiswa UNIBBA\n" +
-      "==========================================================="+
+      "                 Data Mahasiswa UNIBBA\n" +
+      "======================================================="+
       "\nNama     : " + getNama() +
       "\nNIM      : " + getNim() +
       "\nFakultas : " + getFakultas() +
       "\nProdi    : " + getProdi()+
-      "\n===========================================================");
+      "\n=======================================================");
   }
 
   //fungsi utama
