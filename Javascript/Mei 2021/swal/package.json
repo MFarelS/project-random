@@ -1,0 +1,11 @@
+{
+  "name": "swal",
+  "version": "0.0.1",
+  "description": "nyoba sweetalert",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tfkhdyt",
+  "license": "ISC"
+}

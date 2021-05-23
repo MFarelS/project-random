@@ -49,10 +49,10 @@ class Mahasiswa {
     }
     
     bool check_number(string str) {
-       for (int i = 0; i < str.length(); i++)
-         if (isdigit(str[i]) == false)
-            return false;
-            return true;
+      for (int i = 0; i < str.length(); i++)
+        if (isdigit(str[i]) == false)
+          return false;
+          return true;
     }
 
     void inputNama() {
