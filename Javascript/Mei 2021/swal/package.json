@@ -9,6 +9,7 @@
   "author": "tfkhdyt",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^7.27.0",
     "express": "^4.17.1"
   }
 }
