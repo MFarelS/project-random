@@ -1,9 +1,8 @@
 const express = require('express');
-const path = require('path');
+// const path = require('path');
+const swal = require('sweetalert');
 const app = express();
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname+'/index.html'));
-});
+app.use(express.static(__dirname+'/public'));
 
 app.listen(5000, console.log('Server is running on port 5000'));
