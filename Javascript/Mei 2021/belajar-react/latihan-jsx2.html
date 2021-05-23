@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Latihan JSX 2</title>
+		<meta charset="utf-8"/>
+		<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+		<style>
+.header{
+	background-color: blueviolet;
+	color: white;
+	padding: 10px;
+	font-family: Lato, sans-serif;
+}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/babel">
+			let	header = (
+				<header className="header">
+					<h1>Belajar menggunakan JSX pada React</h1>
+					<p>Tutorial React untuk pemula</p>
+				</header>
+			);
+
+			ReactDOM.render(header, document.getElementById("app"));
+		</script>
+	</body>
+</html>
