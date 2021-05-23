@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello React</title>
+		<meta charset="utf-8"/>
+		<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/babel">
+			class Hello extends React.Component {
+				render() {
+					return <h1>Hello world React JS!</h1>
+				}
+			}
+
+			ReactDOM.render(<Hello/>, document.getElementById("app"));
+		</script>
+	</body>
+</html>
