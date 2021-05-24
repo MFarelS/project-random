@@ -1,6 +1,13 @@
 //import logo from './logo.svg';
 import React from 'react';
 import './App.css';
+import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// eslint-disable-next-line
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
 const copyNomer = (nomor) => {
   var dummy = document.createElement("textarea");
