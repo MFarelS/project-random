@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta property="og:image" content="http://vytcdc.com/wp-content/uploads/2017/12/sweetalert.png" />
+  <link rel="image_src" href="http://vytcdc.com/wp-content/uploads/2017/12/sweetalert.png">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://swal.tfkhdyt.repl.co/" />
+  <meta property="og:title" content="SweetAlert - Javascript" />
+  <meta property="og:description" content="Pengen tau cara bikin alert javascript?" />
+  <meta name="description" content="Pengen tau cara bikin alert javascript?">
+  <meta content="width=device-width,initial-scale=1" name=viewport>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="" content="">
+  <title>SweetAlert - Javascript</title>
+  <style>
+    body, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    // minta donasu
+    function donasi() {
+      swal({
+        closeOnClickOutside: false,
+        title: "Btw, mau donasi gak?",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Skip dulu",
+            visible: true
+          },
+          confirm: {
+            text: "Mau",
+          }
+        }
+      }).then((value) => {
+        if (value) {
+          swal({
+            closeOnClickOutside: false,
+            title: "Hatur tengkyu brader 🙏🏼",
+            icon: "success",
+            button: "Sama sama bray",
+          })
+          .then(function() {
+            window.location = "https://tfkhdyt.web.app/donate";
+          });
+        } else {
+          swal({
+            closeOnClickOutside: false,
+            title: "Pelit lu coek 😠",
+            icon: "error",
+            text: "\n",
+            button: false
+          })
+        }
+      })
+    }
+    swal({
+      closeOnClickOutside: false,
+      title: "Mau tau cara bikin yang kaya gini?",
+      icon: "warning",
+      buttons: {
+        cancel: {
+          text: "Enggak",
+          visible: true,
+        },
+        confirm: {
+          text: "Mau dong",
+        }
+      },
+    })
+    .then((value) => {
+      if (value) {
+        swal({
+          closeOnClickOutside: false,
+          title: "Jadi kalian harus belajar dulu mengenai HTML",
+          text: "HTML itu bahasa untuk membuat kerangka sebuah website",
+          buttons: {
+            html: {
+              text: "Belajar HTML",
+              value: "html",
+            },
+            confirm: true,
+          },
+          closeModal: false
+        })
+        .then((value) => {
+          if (value == "html") {
+            window.location.href = "https://www.petanikode.com/html-dasar/";
+          } else {
+            swal({
+              closeOnClickOutside: false,
+              title: "Kalau mau tampilannya lebih bagus, belajar CSS",
+              text: "CSS berfungsi untuk menghias halaman HTML",
+              buttons: {
+                html: {
+                  text: "Belajar CSS",
+                  value: "css",
+                },
+                confirm: true,
+              },
+            })
+            .then((value) => {
+              if (value == "css") {
+                window.open("https://www.petanikode.com/css-untuk-pemula/");
+              } else {
+                swal({
+                  closeOnClickOutside: false,
+                  title: "Setelah itu, kalian belajar Javascript",
+                  text: "Nah ini bagian yang terpenting, karena kalau kalian gak paham javascript, kalian gak bakal bisa bikin web kayak gini."
+                })
+                .then(function () {
+                  swal({
+                    closeOnClickOutside: false,
+                    title: "Kalau kalian pengen tampilan alertnya lebih keren, belajar cara pake SweetAlert",
+                    text: "Well, semua alert pada web ini dibuat menggunakan SweetAlert",
+                  })
+                  .then(function () {
+                    swal({
+                      closeOnClickOutside: false,
+                      title: "Sulit? membingungkan? Wajar",
+                      text: "Karena ini pertama kalinya kalian belajar pemrograman web"
+                    })
+                    .then(function () {
+                      swal({
+                        closeOnClickOutside: false,
+                        title: "Jangan menyerah dan rajin berlatih",
+                        text: "Kalau kalian punya niat untuk belajar, saya jamin kalian pun pasti bisa 😉"
+                      })
+                      .then(function () {
+                        swal({
+                          closeOnClickOutside: false,
+                          title: "Cukup sekian informasi yang dapat saya sampaikan",
+                          text: "Maaf kalau kurang jelas, selanjutnya menjadi tugas kalian untuk ngulik-ngulik sendiri",
+                          icon: "success"
+                        })
+                        .then(function () {
+                          donasi()
+                        })
+                      })
+                    })
+                  })
+                })
+              }
+            })
+          }
+        })
+      } else {
+        swal({
+          closeOnClickOutside: false,
+          title: "Okok lah",
+          icon: "success",
+          button: "Yoi"
+        })
+        .then(function () {
+          donasi()
+        })
+      }
+    })
+
+  </script>
+</body>
+</html>
