@@ -79,76 +79,53 @@
         swal({
           closeOnClickOutside: false,
           title: "Jadi kalian harus belajar dulu mengenai HTML",
-          text: "HTML itu bahasa untuk membuat kerangka sebuah website",
-          buttons: {
-            html: {
-              text: "Belajar HTML",
-              value: "html",
-            },
-            confirm: true,
-          },
-          closeModal: false
+          text: "HTML itu bahasa untuk membuat kerangka sebuah website"
         })
-        .then((value) => {
-          if (value == "html") {
-            window.location.href = "https://www.petanikode.com/html-dasar/";
-          } else {
+        .then(function () {
+          swal({
+            closeOnClickOutside: false,
+            title: "Kalau mau tampilannya lebih bagus, belajar CSS",
+            text: "CSS berfungsi untuk menghias halaman HTML"
+          })
+          .then(function() {
             swal({
               closeOnClickOutside: false,
-              title: "Kalau mau tampilannya lebih bagus, belajar CSS",
-              text: "CSS berfungsi untuk menghias halaman HTML",
-              buttons: {
-                html: {
-                  text: "Belajar CSS",
-                  value: "css",
-                },
-                confirm: true,
-              },
+              title: "Setelah itu, kalian belajar Javascript",
+              text: "Nah ini bagian yang terpenting, karena kalau kalian gak paham javascript, kalian gak bakal bisa bikin web kayak gini."
             })
-            .then((value) => {
-              if (value == "css") {
-                window.open("https://www.petanikode.com/css-untuk-pemula/");
-              } else {
+            .then(function () {
+              swal({
+                closeOnClickOutside: false,
+                title: "Kalau kalian pengen tampilan alertnya lebih keren, belajar cara pake SweetAlert",
+                text: "Well, semua alert pada web ini dibuat menggunakan SweetAlert",
+              })
+              .then(function () {
                 swal({
                   closeOnClickOutside: false,
-                  title: "Setelah itu, kalian belajar Javascript",
-                  text: "Nah ini bagian yang terpenting, karena kalau kalian gak paham javascript, kalian gak bakal bisa bikin web kayak gini."
+                  title: "Sulit? membingungkan? Wajar",
+                  text: "Karena ini pertama kalinya kalian belajar pemrograman web"
                 })
                 .then(function () {
                   swal({
                     closeOnClickOutside: false,
-                    title: "Kalau kalian pengen tampilan alertnya lebih keren, belajar cara pake SweetAlert",
-                    text: "Well, semua alert pada web ini dibuat menggunakan SweetAlert",
+                    title: "Jangan menyerah dan rajin berlatih",
+                    text: "Kalau kalian punya niat untuk belajar, saya jamin kalian pun pasti bisa 😉"
                   })
                   .then(function () {
                     swal({
                       closeOnClickOutside: false,
-                      title: "Sulit? membingungkan? Wajar",
-                      text: "Karena ini pertama kalinya kalian belajar pemrograman web"
+                      title: "Cukup sekian informasi yang dapat saya sampaikan",
+                      text: "Maaf kalau kurang jelas, selanjutnya menjadi tugas kalian untuk ngulik-ngulik sendiri",
+                      icon: "success"
                     })
                     .then(function () {
-                      swal({
-                        closeOnClickOutside: false,
-                        title: "Jangan menyerah dan rajin berlatih",
-                        text: "Kalau kalian punya niat untuk belajar, saya jamin kalian pun pasti bisa 😉"
-                      })
-                      .then(function () {
-                        swal({
-                          closeOnClickOutside: false,
-                          title: "Cukup sekian informasi yang dapat saya sampaikan",
-                          text: "Maaf kalau kurang jelas, selanjutnya menjadi tugas kalian untuk ngulik-ngulik sendiri",
-                          icon: "success"
-                        })
-                        .then(function () {
-                          donasi()
-                        })
-                      })
+                      donasi()
                     })
                   })
                 })
-              }
+              })
             })
-          }
+          })
         })
       } else {
         swal({
