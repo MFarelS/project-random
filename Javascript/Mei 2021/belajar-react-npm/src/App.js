@@ -1,13 +1,7 @@
 //import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-// eslint-disable-next-line
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+import ReactTooltip from "react-tooltip";
 
 const copyNomer = (nomor) => {
   var dummy = document.createElement("textarea");
@@ -53,32 +47,64 @@ const Tab = (props) => {
 const ThreeButton = (props) => {
   return(
     <div>
-    <button onMouseOver={() => copyNomer('0895338865375')}  type="button" class="btn btn-outline-primary mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Nomor telah disalin!"><i class="fa fa-mobile-alt"></i> {props.nomor}</button><br/>
+    <button onMouseOver={() => copyNomer('0895338865375')}  type="button" class="btn btn-outline-primary mb-1" data-tip="Nomor telah disalin" data-event="click" data-effect="solid" data-delay-hide='500'><i class="fa fa-mobile-alt"></i> {props.nomor}</button><br/>
       <button class="btn btn-primary" data-bs-target={props.modal} data-bs-toggle="modal">
           <i class="fas fa-qrcode"></i> QR Code
       </button>&nbsp;
       <a href={props.link} class="btn btn-success" target="_blank" rel="noreferrer"><i class="fas fa-external-link-alt"></i> Buka {props.nama}</a>
+      <ReactTooltip globalEventOff="click" />
+    </div>
+  );
+}
+
+const TwoButton = (props) => {
+  return(
+    <div>
+    <button onMouseOver={() => copyNomer('0895338865375')}  type="button" class="btn btn-outline-primary mb-1" data-tip="Nomor telah disalin" data-event="click" data-effect="solid" data-delay-hide='500'><i class="fa fa-mobile-alt"></i> {props.nomor}</button>&nbsp;
+      <button class="btn btn-primary" data-bs-target={props.modal} data-bs-toggle="modal">
+          <i class="fas fa-qrcode"></i> QR Code
+      </button>
+      <ReactTooltip globalEventOff="click" />
     </div>
   );
 }
 
 const CardBody = (props) => {
-  return(
-    <div class="fade tab-pane show active" id={props.id} aria-labelledby={props.tab} role="tabpanel">
-      <h5 class="card-title">Support me via {props.nama}</h5>
-      <p class="card-text my-4">
-        <img src="https://tfkhdyt.web.app/assets/img/ovo.svg" alt="" height="50vh"/>
-      </p>
-      <p class="card-text">
-        <ThreeButton nama="OVO"
-                     nomor="0895338865375"
-                     modal="#modalOvo"
-                     link="ovo://transfer"
-                     copy="copyNomer('0895338865375')"
-        />
-      </p>
-    </div>
-  )
+  if(props.nama === "OVO"){
+    return(
+      <div class="fade tab-pane show active" id={props.id} aria-labelledby={props.tab} role="tabpanel">
+        <h5 class="card-title">Support me via {props.nama}</h5>
+        <p class="card-text my-4">
+          <img src="https://tfkhdyt.web.app/assets/img/ovo.svg" alt="" height="50vh"/>
+        </p>
+        <p class="card-text">
+          
+          <ThreeButton nama={props.nama}
+                       nomor={props.nomor}
+                       modal={props.modal}
+                       link={props.link}
+          />
+        </p>
+      </div>
+    )
+  }else if(props.nama === "LinkAja"){
+    return(
+      <div class="fade tab-pane show active" id={props.id} aria-labelledby={props.tab} role="tabpanel">
+        <h5 class="card-title">Support me via {props.nama}</h5>
+        <p class="card-text my-4">
+          <img src="https://tfkhdyt.web.app/assets/img/ovo.svg" alt="" height="50vh"/>
+        </p>
+        <p class="card-text">
+          
+          <TwoButton nama={props.nama}
+                       nomor={props.nomor}
+                       modal={props.modal}
+                       link={props.link}
+          />
+        </p>
+      </div>
+    )
+  }
 }
 
 const Body = () => {
@@ -102,6 +128,9 @@ const Body = () => {
               <CardBody id="#ovo"
                         tab="ovo-tab"
                         nama="OVO"
+                        nomor="0895338865375"
+                        modal="#modalOvo"
+                        link="ovo://transfer"
               />
             </div>
           </div>
