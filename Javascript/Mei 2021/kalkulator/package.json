@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.27.0"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
   }
 }
