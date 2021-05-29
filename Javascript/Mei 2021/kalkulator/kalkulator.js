@@ -1,4 +1,4 @@
-const input = require('prompt-sync')()
+const input = require('prompt-sync')() // npm install prompt-sync
 console.clear()
 let a = parseInt(input("Masukkan angka 1 : "))
 let b = parseInt(input("Masukkan angka 2 : "))
