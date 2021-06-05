@@ -15,15 +15,29 @@ def turunan(k,v,p):
     return h
 
 tampilan("")
-k = input("Masukkan konstanta : ")
+
+k = int(input("Masukkan konstanta : ") or 0)
 os.system("clear")
-tampilan(k)
+if k == 0:
+    tampilan("")
+else:
+    tampilan(k)
+
 v = input("Masukkan variabel : ")
-os.system("clear")
-tampilan(f"{k}{v}")
-p = input("Masukkan pangkat : ")
-os.system("clear")
-tampilan(f"{k}{v}^{p}")
+if v != '':
+    os.system("clear")
+    if k == 0:
+        tampilan(f"{v}")
+    else:
+        tampilan(f"{k}{v}")
+    p = int(input("Masukkan pangkat : ") or 1)
+else:
+    os.system("clear")
+    p = 1
+    if v == '':
+        tampilan(f"{k}{v}")
+    else:
+        tampilan(f"{k}{v}^{p}")
 
 h = turunan(k,v,p)
 if h[-2:] == "^1":
