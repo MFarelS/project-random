@@ -116,7 +116,7 @@ class Tabel:
         elif choice == 3:
             os.system("clear")
             self.showData()
-            chooseNim = init(input("Masukkan NIM data yang akan dihapus: "))
+            chooseNim = int(input("Masukkan NIM data yang akan dihapus: "))
             c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
             result = c.fetchone()
             if result[0] == 0:
