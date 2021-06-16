@@ -65,11 +65,11 @@ class Tabel:
         if choice == 1:
             os.system("clear")
             self.showData()
-            print("====================== INPUT DATA MAHASISWA ======================")
+            print("======================= INPUT DATA MAHASISWA ======================")
             nim = int(input("Masukkan NIM    : "))
-            nama = input("Masukkan nama   : ")
-            prodi = input("Masukkan prodi  : ")
-            alamat = input("Masukkan alamat : ")
+            nama = input("Masukkan nama   : ") or "-"
+            prodi = input("Masukkan prodi  : ") or "-"
+            alamat = input("Masukkan alamat : ") or "-"
             try:
                 self.insertData(nim, nama, prodi, alamat)
                 os.system("clear")
@@ -149,10 +149,14 @@ class Tabel:
                     self.menu()
         # keluar dari program
         elif choice == 4:
+            print("\nProgram selesai!")
             quit()
         # input error
         else:
+            os.system("clear")
             print("Pilihan tidak valid!")
+            self.showData()
+            self.menu()
 
 # membuat objek dari kelas tabel
 obj = Tabel()
