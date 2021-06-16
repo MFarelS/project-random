@@ -1,9 +1,16 @@
+# import module
 import sqlite3, os
 from prettytable import PrettyTable
+
+# koneksi ke database
 conn = sqlite3.connect('mahasiswa.db')
+
+# membuat variabel cursor
 c = conn.cursor()
 
+# kelas tabel
 class Tabel:
+    # method menampilkan data
     def showData(self):
         self.tabel = PrettyTable(["NIM","Nama","Prodi","Alamat"])
         c.execute("SELECT * FROM mahasiswa ORDER BY nim ASC")
@@ -16,15 +23,25 @@ class Tabel:
         print(self.tabel)
         self.tabel.clear_rows()
 
+    # method memasukkan data
     def insertData(self, nim, nama, prodi, alamat):
         c.execute(f"INSERT INTO mahasiswa VALUES( \
                     {nim}, \
                     '{nama}', \
                     '{prodi}', \
                     '{alamat}' \
+    def updateData(self, nim, nama, prodi, alamat):
+        c.execute(f"UPDATE mahasiswa SET \
+                    nama = '{nama}', \
+                    prodi = '{prodi}', \
+                    alamat = '{alamat}' \
+                    WHERE nim = {nim} \
+                  ")
+        conn.commit()
                   )")
         conn.commit()
 
+    # method mengubah data
     def updateData(self, nim, nama, prodi, alamat):
         c.execute(f"UPDATE mahasiswa SET \
                     nama = '{nama}', \
@@ -34,12 +51,14 @@ class Tabel:
                   ")
         conn.commit()
 
+    # method menghapus data
     def deleteData(self, nim):
         c.execute(f"DELETE FROM mahasiswa \
                     WHERE nim = {nim} \
                   ")
         conn.commit()
 
+    # method menampilkan menu
     def menu(self):
         print("""1. Masukkan data
 2. Ubah data
@@ -47,11 +66,14 @@ class Tabel:
 4. Keluar
 """)
         choice = int(input("Pilih menu : "))
+        # insert data
         if choice == 1:
             os.system("clear")
-            nim = int(input("Masukkan NIM : "))
-            nama = input("Masukkan nama : ")
-            prodi = input("Masukkan prodi : ")
+            self.showData()
+            print("Input Data Mahasiswa \n")
+            nim = int(input("Masukkan NIM    : "))
+            nama = input("Masukkan nama   : ")
+            prodi = input("Masukkan prodi  : ")
             alamat = input("Masukkan alamat : ")
             try:
                 self.insertData(nim, nama, prodi, alamat)
@@ -62,6 +84,7 @@ class Tabel:
                 print("Input data gagal!")
             self.showData()
             self.menu()
+        # update data
         elif choice == 2:
             chooseNim = int(input("Masukkan NIM data yang akan diubah: "))
             c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
@@ -91,6 +114,7 @@ class Tabel:
                         print("Update data gagal!")
                     self.showData()
                     self.menu()
+        # delete data   
         elif choice == 3:
             chooseNim = int(input("Masukkan NIM data yang akan dihapus: "))
             c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
@@ -128,15 +152,24 @@ class Tabel:
                         print("Proses hapus dibatalkan!")
                     self.showData()
                     self.menu()
-
+        # keluar dari program
         elif choice == 4:
             quit()
+        # input error
         else:
             print("Pilihan tidak valid!")
 
+# membuat objek dari kelas tabel
 obj = Tabel()
+
+# menampilkan data
 obj.showData()
+
+# menampilkan menu
 obj.menu()
 
+# menutup cursor
 c.close()
+
+# menutup koneksi database
 conn.close()
