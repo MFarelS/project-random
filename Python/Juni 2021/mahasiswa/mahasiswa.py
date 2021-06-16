@@ -60,7 +60,14 @@ class Tabel:
 3. Hapus data
 4. Keluar
 """)
-        choice = int(input("Pilih menu : "))
+        choice = input("Pilih menu : ")
+        if choice.isdigit():
+            choice = int(choice)
+        else:
+            os.system("clear")
+            print("Pilihan tidak valid!")
+            self.showData()
+            self.menu()
         # insert data
         if choice == 1:
             os.system("clear")
