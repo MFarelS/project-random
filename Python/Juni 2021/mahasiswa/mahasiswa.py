@@ -16,12 +16,6 @@ class Tabel:
         c.execute("SELECT * FROM mahasiswa ORDER BY nim ASC")
         self.tabel = from_db_cursor(c)
         self.tabel.field_names = ["NIM","Nama","Prodi","Alamat"]
-        """for row in c.fetchall():
-            self.nim = row[0]
-            self.nama = row[1]
-            self.prodi = row[2]
-            self.alamat = row[3]
-            self.tabel.add_row([self.nim, self.nama, self.prodi, self.alamat])"""
         print("====================== DATA MAHASISWA UNIBBA ======================")
         print(self.tabel)
         self.tabel.clear_rows()
@@ -71,95 +65,123 @@ class Tabel:
         # insert data
         if choice == 1:
             os.system("clear")
-            self.showData()
-            print("======================= INPUT DATA MAHASISWA ======================")
-            nim = int(input("Masukkan NIM    : "))
-            nama = input("Masukkan nama   : ") or "-"
-            prodi = input("Masukkan prodi  : ") or "-"
-            alamat = input("Masukkan alamat : ") or "-"
-            try:
-                self.insertData(nim, nama, prodi, alamat)
-                os.system("clear")
-                print("Input data berhasil!")
-            except:
-                os.system("clear")
-                print("Input data gagal!")
-            self.showData()
-            self.menu()
+            while(True):
+                self.showData()
+                print("======================= INPUT DATA MAHASISWA ======================")
+                nim = input("Masukkan NIM    : ")
+                if nim.isdigit():
+                    nim = int(nim)
+                else:
+                    os.system("clear")
+                    print("Input tidak valid! NIM harus berupa bilangan bulat")
+                    continue
+      
+                nama = input("Masukkan nama   : ") or "-"
+                prodi = input("Masukkan prodi  : ") or "-"
+                alamat = input("Masukkan alamat : ") or "-"
+                try:
+                    self.insertData(nim, nama, prodi, alamat)
+                    os.system("clear")
+                    print("Input data berhasil!")
+                except:
+                    os.system("clear")
+                    print("Input data gagal!")
+                self.showData()
+                self.menu()
+                break
         # update data
         elif choice == 2:
             os.system("clear")
-            self.showData()
-            chooseNim = int(input("Masukkan NIM data yang akan diubah: "))
-            c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
-            result = c.fetchone()
-            if result[0] == 0:
-                os.system("clear")
-                print("NIM tidak ditemukan!")
+            while(True):
                 self.showData()
-                self.menu()
-            else:
-                c.execute(f"SELECT * FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
-                for row in c.fetchall():
-                    nim = row[0]
-                    nama = row[1]
-                    prodi = row[2]
-                    alamat = row[3]
+                chooseNim = input("Masukkan NIM data yang akan diubah: ")
+                if chooseNim.isdigit():
+                    chooseNim = int(chooseNim)
+                else:
                     os.system("clear")
-                    print("====================== UPDATE DATA MAHASISWA ======================")
-                    nama = input(f"Masukkan nama ({nama}) : ") or nama
-                    prodi = input(f"Masukkan prodi ({prodi}) : ") or prodi
-                    alamat = input(f"Masukkan alamat ({alamat}) : ") or alamat
-                    try:
-                        self.updateData(nim, nama, prodi, alamat)
-                        os.system("clear")
-                        print("Update data berhasil!")
-                    except:
-                        os.system("clear")
-                        print("Update data gagal!")
+                    print("Input tidak valid! NIM harus berupa bilangan bulat")
+                    continue
+                c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
+                result = c.fetchone()
+                if result[0] == 0:
+                    os.system("clear")
+                    print("NIM tidak ditemukan!")
                     self.showData()
                     self.menu()
+                else:
+                    c.execute(f"SELECT * FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
+                    for row in c.fetchall():
+                        nim = row[0]
+                        nama = row[1]
+                        prodi = row[2]
+                        alamat = row[3]
+                        os.system("clear")
+                        print("====================== UPDATE DATA MAHASISWA ======================")
+                        nama = input(f"Masukkan nama ({nama}) : ") or nama
+                        prodi = input(f"Masukkan prodi ({prodi}) : ") or prodi
+                        alamat = input(f"Masukkan alamat ({alamat}) : ") or alamat
+                        try:
+                            self.updateData(nim, nama, prodi, alamat)
+                            os.system("clear")
+                            print("Update data berhasil!")
+                        except:
+                            os.system("clear")
+                            print("Update data gagal!")
+                        self.showData()
+                        self.menu()
+                break
         # delete data   
         elif choice == 3:
             os.system("clear")
-            self.showData()
-            chooseNim = int(input("Masukkan NIM data yang akan dihapus: "))
-            c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
-            result = c.fetchone()
-            if result[0] == 0:
-                os.system("clear")
-                print("NIM tidak ditemukan!")
+            while(True):
                 self.showData()
-                self.menu()
-            else:
-                c.execute(f"SELECT * FROM mahasiswa WHERE nim LIKE '%{chooseNim}%' LIMIT 1")
-                for row in c.fetchall():
+                chooseNim = input("Masukkan NIM data yang akan dihapus: ")
+                if chooseNim.isdigit():
+                    chooseNim = int(chooseNim)
+                else:
                     os.system("clear")
-                    print("====================== DELETE DATA MAHASISWA ======================")
-                    nim = row[0]
-                    nama = row[1]
-                    prodi = row[2]
-                    alamat = row[3]
-                    self.tabel = PrettyTable(["NIM","Nama","Prodi","Alamat"])
-                    c.execute(f"SELECT * FROM mahasiswa WHERE nim = {nim}")
-                    for row in c.fetchall():
-                        self.nim = row[0]
-                        self.nama = row[1]
-                        self.prodi = row[2]
-                        self.alamat = row[3]
-                        self.tabel.add_row([self.nim, self.nama, self.prodi, self.alamat])
-                    print(self.tabel)
-                    self.tabel.clear_rows()
-                    choice = input("Apakah anda yakin akan menghapus data ini? (y/n) : ")
-                    if choice.lower() == 'y':
-                        self.deleteData(nim)
-                        os.system("clear")
-                        print("Delete data berhasil!")
-                    elif choice.lower() == 'n':
-                        os.system("clear")
-                        print("Proses hapus dibatalkan!")
+                    print("Input tidak valid! NIM harus berupa bilangan bulat")
+                    continue
+                c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
+                result = c.fetchone()
+                if result[0] == 0:
+                    os.system("clear")
+                    print("NIM tidak ditemukan!")
                     self.showData()
                     self.menu()
+                else:
+                    c.execute(f"SELECT * FROM mahasiswa WHERE nim LIKE '%{chooseNim}%' LIMIT 1")
+                    for row in c.fetchall():
+                        os.system("clear")
+                        print("====================== DELETE DATA MAHASISWA ======================")
+                        nim = row[0]
+                        nama = row[1]
+                        prodi = row[2]
+                        alamat = row[3]
+                        self.tabel = PrettyTable(["NIM","Nama","Prodi","Alamat"])
+                        c.execute(f"SELECT * FROM mahasiswa WHERE nim = {nim}")
+                        for row in c.fetchall():
+                            self.nim = row[0]
+                            self.nama = row[1]
+                            self.prodi = row[2]
+                            self.alamat = row[3]
+                            self.tabel.add_row([self.nim, self.nama, self.prodi, self.alamat])
+                        print(self.tabel)
+                        self.tabel.clear_rows()
+                        choice = input("Apakah anda yakin akan menghapus data ini? (y/n) : ")
+                        if choice.lower() == 'y':
+                            self.deleteData(nim)
+                            os.system("clear")
+                            print("Delete data berhasil!")
+                        elif choice.lower() == 'n':
+                            os.system("clear")
+                            print("Proses hapus dibatalkan!")
+                        else:
+                            os.system("clear")
+                            print("Pilihan tidak valid!")
+                        self.showData()
+                        self.menu()
+                break
         # keluar dari program
         elif choice == 4:
             print("========================= PROGRAM SELESAI =========================")
