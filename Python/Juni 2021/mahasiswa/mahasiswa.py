@@ -114,7 +114,9 @@ class Tabel:
                     self.menu()
         # delete data   
         elif choice == 3:
-            chooseNim = int(input("Masukkan NIM data yang akan dihapus: "))
+            os.system("clear")
+            self.showData()
+            chooseNim = init(input("Masukkan NIM data yang akan dihapus: "))
             c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
             result = c.fetchone()
             if result[0] == 0:
@@ -126,6 +128,7 @@ class Tabel:
                 c.execute(f"SELECT * FROM mahasiswa WHERE nim LIKE '%{chooseNim}%' LIMIT 1")
                 for row in c.fetchall():
                     os.system("clear")
+                    print("====================== DELETE DATA MAHASISWA ======================")
                     nim = row[0]
                     nama = row[1]
                     prodi = row[2]
