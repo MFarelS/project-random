@@ -81,6 +81,8 @@ class Tabel:
             self.menu()
         # update data
         elif choice == 2:
+            os.system("clear")
+            self.showData()
             chooseNim = int(input("Masukkan NIM data yang akan diubah: "))
             c.execute(f"SELECT COUNT(*) FROM mahasiswa WHERE nim LIKE '%{chooseNim}%'")
             result = c.fetchone()
@@ -97,6 +99,7 @@ class Tabel:
                     prodi = row[2]
                     alamat = row[3]
                     os.system("clear")
+                    print("====================== UPDATE DATA MAHASISWA ======================")
                     nama = input(f"Masukkan nama ({nama}) : ") or nama
                     prodi = input(f"Masukkan prodi ({prodi}) : ") or prodi
                     alamat = input(f"Masukkan alamat ({alamat}) : ") or alamat
@@ -149,7 +152,7 @@ class Tabel:
                     self.menu()
         # keluar dari program
         elif choice == 4:
-            print("\nProgram selesai!")
+            print("========================= PROGRAM SELESAI =========================")
             quit()
         # input error
         else:
