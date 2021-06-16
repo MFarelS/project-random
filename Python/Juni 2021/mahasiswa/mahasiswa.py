@@ -3,7 +3,7 @@ import sqlite3, os
 from prettytable import PrettyTable, from_db_cursor
 
 # koneksi ke database
-conn = sqlite3.connect('mahasiswa.db')
+conn = sqlite3.connect('db/mahasiswa.db')
 
 # membuat variabel cursor
 c = conn.cursor()
