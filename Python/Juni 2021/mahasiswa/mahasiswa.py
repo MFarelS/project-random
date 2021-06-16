@@ -8,6 +8,12 @@ conn = sqlite3.connect('db/mahasiswa.db')
 # membuat variabel cursor
 c = conn.cursor()
 
+c.execute("""CREATE TABLE IF NOT EXISTS mahasiswa(
+nim integer not null primary key,
+nama text,
+prodi text,
+alamat text);""")
+
 # kelas tabel
 class Tabel:
     # method menampilkan data
