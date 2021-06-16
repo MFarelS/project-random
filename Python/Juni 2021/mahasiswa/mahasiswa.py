@@ -1,6 +1,6 @@
 # import module
 import sqlite3, os
-from prettytable import PrettyTable
+from prettytable import PrettyTable, from_db_cursor
 
 # koneksi ke database
 conn = sqlite3.connect('mahasiswa.db')
@@ -12,14 +12,17 @@ c = conn.cursor()
 class Tabel:
     # method menampilkan data
     def showData(self):
-        self.tabel = PrettyTable(["NIM","Nama","Prodi","Alamat"])
+        self.tabel = PrettyTable()
         c.execute("SELECT * FROM mahasiswa ORDER BY nim ASC")
-        for row in c.fetchall():
+        self.tabel = from_db_cursor(c)
+        self.tabel.field_names = ["NIM","Nama","Prodi","Alamat"]
+        """for row in c.fetchall():
             self.nim = row[0]
             self.nama = row[1]
             self.prodi = row[2]
             self.alamat = row[3]
-            self.tabel.add_row([self.nim, self.nama, self.prodi, self.alamat])
+            self.tabel.add_row([self.nim, self.nama, self.prodi, self.alamat])"""
+        print("====================== DATA MAHASISWA UNIBBA ======================")
         print(self.tabel)
         self.tabel.clear_rows()
 
@@ -30,14 +33,6 @@ class Tabel:
                     '{nama}', \
                     '{prodi}', \
                     '{alamat}' \
-    def updateData(self, nim, nama, prodi, alamat):
-        c.execute(f"UPDATE mahasiswa SET \
-                    nama = '{nama}', \
-                    prodi = '{prodi}', \
-                    alamat = '{alamat}' \
-                    WHERE nim = {nim} \
-                  ")
-        conn.commit()
                   )")
         conn.commit()
 
@@ -70,7 +65,7 @@ class Tabel:
         if choice == 1:
             os.system("clear")
             self.showData()
-            print("Input Data Mahasiswa \n")
+            print("====================== INPUT DATA MAHASISWA ======================")
             nim = int(input("Masukkan NIM    : "))
             nama = input("Masukkan nama   : ")
             prodi = input("Masukkan prodi  : ")
