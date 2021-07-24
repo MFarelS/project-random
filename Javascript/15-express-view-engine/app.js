@@ -6,12 +6,32 @@ const port = 3000
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  //res.sendFile('./index.html', {root: __dirname})
-  res.render('index')
+  const mahasiswa = [
+    {
+      nama: 'Taufik',
+      email: 'tfkhdyt@pm.me'
+    },
+    {
+      nama: 'Fauzi',
+      email: 'fauzi@pm.me'
+    },
+    {
+      nama: 'Doni',
+      email: 'doni@pm.me'
+    },
+  ]
+  res.render('index', {
+    nama : 'Taufik Hidayat', 
+    title : 'Halaman home',
+    mahasiswa,
+  })
 })
 
 app.get('/about', (req, res) => {
-  res.sendFile('./about.html', {root: __dirname})
+  res.render('about', {
+    nama : 'Taufik Hidayat',
+    title : "Halaman about"
+  })
 })
 
 app.get('/product/:id', (req, res) => {
