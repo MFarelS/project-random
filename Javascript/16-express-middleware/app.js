@@ -5,7 +5,12 @@ const port = 3000
 
 // gunakan ejs
 app.set('view engine', 'ejs');
+
+// third party middleware
 app.use(expressLayouts)
+
+// built in middleware
+app.use(express.static('public'))
 
 // aplication level middleware
 app.use((req, res, next) => {
