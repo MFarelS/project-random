@@ -1,6 +1,9 @@
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const {body, check, validationResult} = require('express-validator')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const flash = require('connect-flash')
 
 const app = express()
 const port = 3000
@@ -16,6 +19,16 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 
 app.use(express.urlencoded({extended : true}))
+
+// konfigurasi flash
+app.use(cookieParser('secret'))
+app.use(session({
+  cookie : { maxAge: 6000 },
+  secret : 'secret',
+  resave : true,
+  saveUninitialized : true
+}))
+app.use(flash())
 
 app.get('/', (req, res) => {
   const mahasiswa = [
@@ -52,7 +65,8 @@ app.get('/contact', (req, res) => {
   res.render('contact', {
     layout: 'layouts/main-layouts',
     title : "Contact",
-    contacts
+    contacts,
+    msg : req.flash('msg')
   })
 })
 
@@ -83,6 +97,7 @@ app.post('/contact', [
     });
   } else {
     addContact(req.body)
+    req.flash('msg', 'Data kontak berhasil ditambahkan')
     res.redirect('/contact')
   }
 })
