@@ -2,7 +2,7 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const app = express()
 const port = 3000
-const {loadContact, findContact} = require('./utils/contacts')
+const {loadContact, findContact, addContact} = require('./utils/contacts')
 
 // gunakan ejs
 app.set('view engine', 'ejs');
@@ -12,6 +12,8 @@ app.use(expressLayouts)
 
 // built in middleware
 app.use(express.static('public'))
+
+app.use(express.urlencoded())
 
 app.get('/', (req, res) => {
   const mahasiswa = [
@@ -30,7 +32,7 @@ app.get('/', (req, res) => {
   ]
   res.render('index', {
     layout: 'layouts/main-layouts',
-    title : 'Halaman home',
+    title : 'Home',
     mahasiswa,
   })
 })
@@ -38,7 +40,7 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about', {
     layout: 'layouts/main-layouts',
-    title : "Halaman about"
+    title : "About"
   })
 })
 
@@ -47,16 +49,28 @@ app.get('/contact', (req, res) => {
   console.log(contacts)
   res.render('contact', {
     layout: 'layouts/main-layouts',
-    title : "Halaman contact",
+    title : "Contact",
     contacts
   })
+})
+
+app.get('/contact/add', (req, res) => {
+  res.render('add-contact', {
+    layout: 'layouts/main-layouts',
+    title: 'Form Tambah Contact'
+  })
+})
+
+app.post('/contact', (req, res) => {
+  addContact(req.body)
+  res.redirect('/contact')
 })
 
 app.get('/contact/:nama/', (req, res) => {
   const contact = findContact(req.params.nama)
   res.render('detail', {
     layout: 'layouts/main-layouts',
-    title : "Halaman Detail Contact",
+    title : "Detail Contact",
     contact,
   })
 })
