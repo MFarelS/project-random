@@ -33,7 +33,7 @@ btnTampilkan.addEventListener('click', function () {
   const elementOutput = document.getElementById('output');
   let html = `
     <b>NIM : ${nim}</b>
-    <table border='1' cellspacing='0' style='border-collapse:collapse; margin-top: 20px;'>
+    <table border='1' cellspacing='0' style='border-collapse:collapse; margin-top: 20px;' id='tabelOutput'>
       <tr>
         <th>No</th>
         <th>Nama Mata Kuliah</th>
