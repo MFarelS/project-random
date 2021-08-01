@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser("secret"));
 app.use(
   session({
-    cookie: { maxAge: 6000 },
+    cookie: { maxAge: 86400000 },
     secret: "secret",
     resave: true,
     saveUninitialized: true,
@@ -25,20 +25,38 @@ app.use(
 );
 app.use(flash());
 
+let sess;
+
 app.get("/", function (req, res) {
-  res.render("login");
+  sess = req.session;
+  if (sess.username && sess.password) {
+    return res.redirect("/dashboard");
+  }
+  res.render("login", {
+    belumLogin: req.flash("msg"),
+    out: req.flash("out"),
+  });
 });
 
 app.get("/dashboard", (req, res) => {
-  res.render("dashboard");
+  sess = req.session;
+  if (sess.username && sess.password) {
+    res.render("dashboard");
+  } else {
+    req.flash("msg", "Anda harus login terlebih dahulu!");
+    res.redirect("/");
+  }
 });
 
 app.post("/", (req, res) => {
+  sess = req.session;
   const username = req.body.username;
   const password = req.body.password;
 
   if (username === "taufik") {
     if (password === "hidayat") {
+      sess.username = username;
+      sess.password = password;
       res.redirect("/dashboard");
     } else {
       req.flash("msg", "Password salah!");
@@ -53,6 +71,19 @@ app.post("/", (req, res) => {
       msg: req.flash("msg"),
     });
   }
+});
+
+app.get('/add', (req, res) => {
+  res.render('add-tanaman')
+})
+
+app.get("/logout", (req, res) => {
+  res.redirect("/");
+  req.session.destroy((err) => {
+    if (err) {
+      return console.log(err);
+    }
+  });
 });
 
 app.listen(port, function (err) {
