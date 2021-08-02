@@ -1,7 +1,1 @@
-[
-  {
-    "kode" : "1",
-    "nama" : "Bunga Mawar",
-    "keterangan" : "Bunga berwarna merah"
-  }
-]
+[{"kode":"1","nama":"Bunga Mawar","keterangan":"Warnanya merah"},{"kode":"2","nama":"Bunga Bangkai","keterangan":"Bunga yang sangat bau"},{"kode":"3","nama":"Bunga Matahari","keterangan":"Bunga yang warnanya kuning"}]

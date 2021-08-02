@@ -25,6 +25,17 @@
           <a class="btn btn-danger float-end" href="/logout">Logout</a>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12">
+          <% if (typeof msg != 'undefined') {
+            if(msg.length !== 0) { %>
+              <div class="alert alert-success" role="alert">
+                <%= msg %>
+              </div>
+            <% } 
+          }%>
+        </div>
+      </div>
       <div class="row mt-2">
         <div class="col-12 col-lg-8">
           <div class="table-responsive">
@@ -38,24 +49,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Ubah|Hapus</td>
+                <% 
+                tanamans.forEach((tanaman) => { %>
+                <tr>  
+                  <th scope="row"><%= tanaman.kode %></th>
+                  <td><%= tanaman.nama %></td>
+                  <td><%= tanaman.keterangan %></td>
+                  <td>
+                    <a href="/ubah/<%= tanaman.kode %>" class='btn btn-success badge rounded-pill'>Ubah</a>
+                    <a href="/hapus/<%= tanaman.kode %>" class='btn btn-danger badge rounded-pill'>Hapus</a>
+                  </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Ubah|Hapus</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Awokawok</td>
-                  <td>Dontol</td>
-                  <td>Ubah|Hapus</td>
-                </tr>
+                <% }) %>
               </tbody>
             </table>
           </div>

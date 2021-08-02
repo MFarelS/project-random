@@ -6,6 +6,15 @@ const flash = require("connect-flash");
 const app = express();
 const port = 3000;
 
+const {
+  loadTanaman,
+  findTanaman,
+  cekDuplikat,
+  addTanaman,
+  deleteTanaman,
+  updateTanaman,
+} = require("./utils/tanaman");
+
 // View engine setup
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -17,7 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser("secret"));
 app.use(
   session({
-    //cookie: { maxAge: 86400000 },
+    cookie: {
+      expires: new Date(Date.now() + 60 * 60000),
+    },
     secret: "secret",
     resave: true,
     saveUninitialized: true,
@@ -29,7 +40,7 @@ let sess;
 
 app.get("/", function (req, res) {
   sess = req.session;
-  if (sess.username && sess.password) {
+  if (sess.loggedin) {
     return res.redirect("/dashboard");
   }
   res.render("login", {
@@ -40,11 +51,38 @@ app.get("/", function (req, res) {
 
 app.get("/dashboard", (req, res) => {
   sess = req.session;
-  if (sess.username && sess.password) {
-    res.render("dashboard");
+  const tanamans = loadTanaman();
+  if (sess.loggedin || req.query.add || req.query.hapus) {
+    sess.loggedin = true;
+    res.render("dashboard", {
+      tanamans,
+      msg: req.flash("msg"),
+    });
   } else {
     req.flash("msg", "Anda harus login terlebih dahulu!");
     res.redirect("/");
+  }
+});
+
+app.post("/dashboard", (req, res) => {
+  sess = req.session;
+  addTanaman(req.body, () => {
+    sess.loggedin = true;
+    req.flash("msg", "Data berhasil ditambah!");
+    res.redirect("/dashboard?add=true");
+  });
+});
+
+app.get("/hapus/:kode", (req, res) => {
+  const tanaman = findTanaman(req.params.kode);
+  if (!tanaman) {
+    res.status(404);
+    res.send("<h1>404</h4>");
+  } else {
+    deleteTanaman(req.params.kode);
+    sess.loggedin = true;
+    req.flash("msg", "Data berhasil dihapus!");
+    res.redirect("/dashboard?hapus=true");
   }
 });
 
@@ -57,6 +95,7 @@ app.post("/", (req, res) => {
     if (password === "hidayat") {
       sess.username = username;
       sess.password = password;
+      sess.loggedin = true;
       res.redirect("/dashboard");
     } else {
       req.flash("msg", "Password salah!");
@@ -73,9 +112,11 @@ app.post("/", (req, res) => {
   }
 });
 
-app.get('/add', (req, res) => {
-  res.render('add-tanaman')
-})
+app.get("/add", (req, res) => {
+  sess = req.session;
+  sess.loggedin = true;
+  res.render("add-tanaman");
+});
 
 app.get("/logout", (req, res) => {
   res.redirect("/");
