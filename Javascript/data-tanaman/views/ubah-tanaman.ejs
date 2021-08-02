@@ -11,30 +11,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="font.css">
-    <title>Add Tanaman</title>
+    <style>
+* {
+  font-size: .9rem;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+    </style>
+    <title>Ubah Tanaman</title>
   </head>
   <body>
     <div class="container">
       <div class="row mt-2">
         <div class="col-12 col-lg-8 text-center">
-          <h1>Add Tanaman</h1>
+          <h1>Ubah Tanaman</h1>
         </div>
       </div>
       <div class="row mt-2">
         <div class="col-12 col-lg-8">
-          <form action="/dashboard" method="post">
+          <form action="/ubah/update" method="post">
             <div class="mb-3">
               <label for="kode" class="form-label">Kode Tanaman</label>
-              <input type="text" class="form-control" id="kode" name="kode">
+              <input type="hidden" class="form-control" id="oldKode" name='oldKode' value='<%= tanaman.oldKode || tanaman.kode %>'>
+              <input type="text" class="form-control" id="kode" name="kode" value="<%= tanaman.kode %>">
             </div>
             <div class="mb-3">
               <label for="nama" class="form-label">Nama Tanaman</label>
-              <input type="text" class="form-control" id="nama" name="nama">
+              <input type="text" class="form-control" id="nama" name="nama" value="<%= tanaman.nama %>">
             </div>
             <div class="mb-3">
               <label for="keterangan" class="form-label">Keterangan Tanaman</label>
-              <input type="text" class="form-control" id="keterangan" name="keterangan">
+              <input type="text" class="form-control" id="keterangan" name="keterangan" value="<%= tanaman.keterangan %>">
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
             <a href="/dashboard" class="btn btn-success float-end"><i class="fas fa-long-arrow-alt-left"></i> Kembali</a>

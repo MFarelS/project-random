@@ -44,8 +44,8 @@ const deleteTanaman = (tanaman) => {
 
 const updateTanaman = tanamanBaru => {
   const tanamans = loadTanaman()
-  const filteredTanaman = tanamans.filter(tanaman => tanaman.nama !== tanamanBaru.oldTanaman)
-  delete tanamanBaru.oldTanaman
+  const filteredTanaman = tanamans.filter(tanaman => tanaman.kode !== tanamanBaru.oldKode)
+  delete tanamanBaru.oldKode
   filteredTanaman.push(tanamanBaru)
   saveTanaman(filteredTanaman)
 }
