@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+      span {
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="btn">
+      <button operator="+">Tambah</button>
+      <button operator="-">Kurang</button>
+      <button operator="÷">Kali</button>
+      <button operator="×">Bagi</button>
+    </div>
+    <div style="margin-top:10px;">
+      <input type="number" id="value1" style="width:100px;">
+      <span id="tanda" style="width:100p;">+</span>
+      <input type="number" id="value2" style="width:100px;">
+    </div>
+    <script>
+      const btn = document.getElementById('btn');
+      const tanda = document.getElementById('tanda');
+      btn.addEventListener('click', function (e) {
+        const operator = e.target.getAttribute('operator');
+        tanda.innerHTML = operator;
+      });
+    </script>
+  </body>
+</html>
