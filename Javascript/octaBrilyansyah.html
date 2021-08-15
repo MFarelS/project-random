@@ -16,20 +16,57 @@
     <div id="btn">
       <button operator="+">Tambah</button>
       <button operator="-">Kurang</button>
-      <button operator="÷">Kali</button>
-      <button operator="×">Bagi</button>
+      <button operator="×">Kali</button>
+      <button operator="÷">Bagi</button>
+      <button id="submit" style="50px;">Submit</button>
     </div>
     <div style="margin-top:10px;">
       <input type="number" id="value1" style="width:100px;">
       <span id="tanda">+</span>
       <input type="number" id="value2" style="width:100px;">
+      <span>=</span>
+      <input type="number" id="hasil" style="width:100px;">
     </div>
     <script>
       const btn = document.getElementById('btn');
       const tanda = document.getElementById('tanda');
+      const submit = document.getElementById('submit');
+      
       btn.addEventListener('click', function (e) {
         const operator = e.target.getAttribute('operator');
         tanda.innerHTML = operator;
+      });
+      
+      const hitung = (value1, value2, operator) => {
+        value1 = parseInt(value1);
+        value2 = parseInt(value2);
+        switch(operator){
+          case '+':
+            return value1 + value2;
+            break;
+          case '-':
+            return value1 - value2;
+            break;
+          case '×':
+            return value1 * value2;
+            break;
+          case '÷':
+            return value1 / value2;
+            break;
+          default:
+            break;
+        }
+      }
+      
+      submit.addEventListener('click', () => {
+        const value1 = document.getElementById('value1').value;
+        const value2 = document.getElementById('value2').value;
+        const elHasil = document.getElementById('hasil');
+        const operator = document.getElementById('tanda').innerHTML;
+        
+        const hasil = hitung(value1, value2, operator);
+        elHasil.value = hasil;
+        tanda.innerText = operator;
       });
     </script>
   </body>
