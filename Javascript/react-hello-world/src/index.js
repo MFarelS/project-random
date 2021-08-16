@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import Home from './container/Home/Home'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+//import Home from './container/Home/Home'
+//import Product from './container/Product/Product'
+import LifeCycleComp from './container/LifeCycleComp/LifeCycleComp'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <LifeCycleComp />
   </React.StrictMode>,
   document.getElementById('root')
 );
