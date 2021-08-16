@@ -5,11 +5,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 //import Home from './container/Home/Home'
 //import Product from './container/Product/Product'
-import LifeCycleComp from './container/LifeCycleComp/LifeCycleComp'
+//import LifeCycleComp from './container/LifeCycleComp/LifeCycleComp'
+import BlogPost from './container/BlogPost/BlogPost'
 
 ReactDOM.render(
   <React.StrictMode>
-    <LifeCycleComp />
+    <div className='mx-auto'>
+      <BlogPost />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
