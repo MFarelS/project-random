@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-//import Home from './container/Home/Home'
+import Home from './container/Home/Home'
 //import Product from './container/Product/Product'
 //import LifeCycleComp from './container/LifeCycleComp/LifeCycleComp'
-import BlogPost from './container/BlogPost/BlogPost'
+//import BlogPost from './container/BlogPost/BlogPost'
 
 ReactDOM.render(
   <React.StrictMode>
     <div className='mx-auto'>
-      <BlogPost />
+      <Home />
     </div>
   </React.StrictMode>,
   document.getElementById('root')

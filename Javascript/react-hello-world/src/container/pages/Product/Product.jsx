@@ -1,6 +1,6 @@
 import React from 'react'
 //import Header from '../../component/Header/Header'
-import CardProduct from '../CardProduct/CardProduct'
+import CardProduct from './CardProduct/CardProduct'
 
 class Product extends React.Component {
   state = {
