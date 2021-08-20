@@ -1,11 +1,16 @@
-import React, {Component, Fragment} from 'react'
-import YoutubeComp from '../../component/YoutubeComp/YoutubeComp'
+// libraries
+import React, {Component, Fragment} from 'react';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+
+// pages
+import BlogPost from '../pages/BlogPost/BlogPost';
+import DetailPost from '../pages/BlogPost/DetailPost';
+import Product from '../pages/Product/Product';
+import YT from '../pages/youtube/youtube';
+// import LifeCycleComp from '../LifeCycleComp/LifeCycleComp'
+
+// styling
 import './Home.css';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom'
-import BlogPost from '../pages/BlogPost/BlogPost'
-import Product from '../pages/Product/Product'
-import LifeCycleComp from '../LifeCycleComp/LifeCycleComp'
-import YT from '../pages/youtube/youtube'
 
 class Home extends Component {
   render() {
@@ -14,7 +19,7 @@ class Home extends Component {
         <Fragment>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-              <a className="navbar-brand" href="#">Belajar React</a>
+              <a className="navbar-brand" href="/#">Belajar React</a>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
@@ -34,6 +39,7 @@ class Home extends Component {
             </div>
           </nav>
           <Route path='/' exact component={BlogPost} />
+          <Route path='/detail-post/:id' component={DetailPost} />
           <Route path='/product' component={Product} />
           <Route path='/yt' component={YT} />
         </Fragment>

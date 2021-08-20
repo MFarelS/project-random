@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import YoutubeComp from '../../../component/YoutubeComp/YoutubeComp'
 
 const YT = () => {
